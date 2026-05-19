@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION:        ${{ secrets.AWS_REGION }}
   MONITORING_REGION: ${{ secrets.MONITORING_REGION }}
-  ECR_REGISTRY:      ${{ secrets.ECR_REGISTRY }}
+  ECR_REGISTRY:      768646365686.dkr.ecr.us-east-1.amazonaws.com
 
 # ═══════════════════════════════════════════════════════════
 #  JOB 1 — install
@@ -63,7 +63,7 @@ jobs:
       - name: Login to ECR us-east-1
         run: |
           aws ecr get-login-password --region us-east-1 \
-            | docker login --username AWS --password-stdin 768646365686.dkr.ecr.us-east-1.amazonaws.com
+            | docker login --username AWS --password-stdin $ECR_REGISTRY
 
       - name: Build & push — Frontend
         env: { IMAGE_TAG: "${{ github.sha }}" }
