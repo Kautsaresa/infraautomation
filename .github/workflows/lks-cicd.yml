@@ -63,7 +63,7 @@ jobs:
       - name: Login to ECR us-east-1
         run: |
           aws ecr get-login-password --region us-east-1 \
-            | docker login --username AWS --password-stdin $ECR_REGISTRY
+            | docker login --username AWS --password-stdin 768646365686.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Build & push — Frontend
         env: { IMAGE_TAG: "${{ github.sha }}" }
